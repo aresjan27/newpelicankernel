@@ -142,22 +142,11 @@
 			clksrc_div = <0x1>; //default OSD: from 0x0 to 0xf
 			duty_rate = <50>; //default duty_rate 0 ~ 100
 		};
-		pwm_1 {
-			/* Buzzer Speaker */
-			enable = <1>;
-			/* 1000 Hz */
-			clkout_div = <0x19>; //default OCD: from 0x0 to 0xff
-			clksrc_div = <0x09>; //default OSD: from 0x0 to 0xf
-			duty_rate = <50>; //default duty_rate 0 ~ 100
-		};
 		pwm_3 {
-			/* USB backup active indicate led (Steady, Blanking) */
+			/* fan */
 			enable = <1>;
-			/* 4 Hz */
-			clkout_div = <0x66>; //default OCD: from 0x0 to 0xff
-			clksrc_div = <0x0f>; //default OSD: from 0x0 to 0xf
 			/* 50: Blanking, 75: Steady */
-			duty_rate = <75>; //default duty_rate 0 ~ 100
+			duty_rate = <20>; //default duty_rate 0 ~ 100
 		};
 	};
 	
@@ -175,28 +164,5 @@
                 };
 	};
 
-	leds {
-		compatible = "asustor,as11-leds";
-
-		diskx4_leds {
-			status = "okay";
-			disk0_active {
-				device_type = "gpio"; status = "okay"; default_trigger = "disk0-activity"; mapped_diskid = <4>; offset = <16>; };
-			disk1_active {
-				device_type = "gpio"; status = "okay"; default_trigger = "disk0-activity"; mapped_diskid = <3>; offset = <16>; };
-			disk2_active {
-				device_type = "gpio"; status = "okay"; default_trigger = "disk0-activity"; mapped_diskid = <1>; offset = <16>; };
-			disk3_active {
-				device_type = "gpio"; status = "okay"; default_trigger = "disk0-activity"; mapped_diskid = <2>; offset = <16>; };
-		};
-
-		diskx2_leds {
-			status = "okay";
-			disk0_active {
-				device_type = "gpio"; status = "okay"; default_trigger = "disk0-activity"; mapped_diskid = <1>; offset = <16>; };
-			disk1_active {
-				device_type = "gpio"; status = "okay"; default_trigger = "disk0-activity"; mapped_diskid = <2>; offset = <16>; };
-		};
-	};
 };
 
