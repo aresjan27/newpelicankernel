@@ -1,0 +1,5 @@
+config SYS_STAT
+	tristate "kernel stat thread"
+	depends on STAGING
+	default m
+	---help---
