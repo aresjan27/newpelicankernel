@@ -18,7 +18,7 @@ AMOUNT_WIDTH = 14
 def parse_iban_fr(iban: str):
     iban = iban.replace(" ", "").upper()
     if not iban.startswith("FR") or len(iban) < 27:
-        raise ValueError("Expected a French IBAN (FR...).")
+        raise ValueError("Expected a French IBAN (FR...").")
     bban = iban[4:]  # FRkk + BBAN
     bank_code = bban[0:5]
     branch_code = bban[5:10]
@@ -97,10 +97,17 @@ def parse_csv_transactions(csv_path):
 
     with open(csv_path, newline="", encoding="utf-8") as f:
         reader = csv.reader(f, delimiter=";")
+        started = False
         for row in reader:
             if not row:
                 continue
             row = row + [""] * (6 - len(row))
+
+            if not started:
+                if DATE_RE.match(row[0].strip()):
+                    started = True
+                else:
+                    continue
 
             # detect opening balance row
             if not DATE_RE.match(row[0].strip()) and DATE_RE.match(row[3].strip()):
